@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>School Announcement</title>
@@ -9,31 +9,40 @@
       color: #ff6600;
       font-family: 'Arial Black', Gadget, sans-serif;
       text-align: center;
-      padding: 50px;
+      padding: 30px;
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      box-sizing: border-box;
     }
+
     .container {
       border: 5px solid #ff6600;
       padding: 40px;
       border-radius: 15px;
       background-color: #0d0d0d;
       display: inline-block;
-      min-width: 400px;
+      min-width: 600px;
+      max-width: 700px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      position: relative;
     }
+
     h1 {
-      font-size: 4rem;
+      font-size: 3.5rem;
       text-shadow: 3px 3px #000, 0 0 20px #ff6600;
       margin: 0 0 20px 0;
     }
+
     p {
       color: #ffffff;
       font-size: 1.5rem;
       font-family: 'Arial', sans-serif;
     }
+
     .signature {
       font-size: 1.1rem;
       color: #ff8533;
@@ -41,25 +50,334 @@
       font-family: 'Comic Sans MS', 'Arial', sans-serif;
       margin-top: 15px;
     }
+
     .emoji {
       font-size: 5rem;
+      user-select: none;
     }
+
+    /* Secret Easter Egg Trigger */
+    .easter-egg-trigger {
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.15s ease;
+    }
+    .easter-egg-trigger:active {
+      transform: scale(1.2);
+    }
+
     .instruction {
       color: #888888;
       font-size: 1rem;
       font-family: sans-serif;
       margin-top: 25px;
     }
+
+    /* Hidden Game Section */
+    #game-section {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px dashed #ff6600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.5s ease;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .game-title {
+      font-size: 1.5rem;
+      color: #ffaa00;
+    }
+
+    .close-btn {
+      background: #c0392b;
+      color: white;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .game-canvas-container {
+      position: relative;
+      width: 500px;
+      height: 350px;
+      border: 3px solid #ff6600;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #050505;
+    }
+
+    canvas {
+      display: block;
+      background: linear-gradient(to bottom, #11051c, #050505);
+    }
+
+    /* Lock Overlay Screen */
+    .lock-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 5, 12, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      padding: 20px;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+
+    .lock-screen h2 {
+      color: #e74c3c;
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .lock-screen p {
+      font-size: 1.1rem;
+      color: #ff8533;
+    }
+
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      width: 500px;
+      font-family: 'Arial', sans-serif;
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <div class="emoji">🎃 👻 🦇</div>
+    <div class="emoji">
+      <span id="pumpkin-trigger" class="easter-egg-trigger" title="???">🎃</span> 👻 🦇
+    </div>
     <h1>HAPPY HALLOWEEN!</h1>
     <p>Have a spooktacular day at school today!</p>
     <p>Stay safe trick-or-treating! 🍬</p>
     <p class="signature">- Sent from You-Know-Who 🧙‍♂️✨</p>
+
+    <!-- Hidden Game Area -->
+    <div id="game-section" class="hidden">
+      <div class="game-header">
+        <span class="game-title">🎃 Secret Candy Catcher!</span>
+        <button id="close-game" class="close-btn">✕ Hide</button>
+      </div>
+
+      <div class="hud">
+        <span>Score: <strong id="score">0</strong></span>
+        <span>Time: <strong id="timer">30</strong>s</span>
+      </div>
+
+      <div class="game-canvas-container">
+        <!-- Locked Message Screen -->
+        <div id="lock-screen" class="lock-screen hidden">
+          <h2>🔒 Game Locked</h2>
+          <p>You've already played your turn for Halloween!</p>
+          <p id="final-recorded-score" style="margin-top: 15px; color: #fff;"></p>
+        </div>
+
+        <canvas id="gameCanvas" width="500" height="350"></canvas>
+      </div>
+    </div>
+
     <div class="instruction">(Please close this tab to return to work)</div>
   </div>
+
+  <script>
+    // Game & State Management
+    let clickCount = 0;
+    const pumpkinTrigger = document.getElementById('pumpkin-trigger');
+    const gameSection = document.getElementById('game-section');
+    const closeBtn = document.getElementById('close-game');
+    const lockScreen = document.getElementById('lock-screen');
+    const finalRecordedScore = document.getElementById('final-recorded-score');
+
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const timerEl = document.getElementById('timer');
+
+    let score = 0;
+    let timeLeft = 30;
+    let gameLoopId = null;
+    let timerInterval = null;
+    let isPlaying = false;
+
+    // Game Objects
+    const cauldron = { x: 210, y: 300, width: 80, height: 30, speed: 7 };
+    let items = [];
+    const keys = {};
+
+    // Check localStorage status
+    function hasPlayedBefore() {
+      return localStorage.getItem('halloweenGamePlayed') === 'true';
+    }
+
+    // Secret 3-Click Trigger
+    pumpkinTrigger.addEventListener('click', () => {
+      clickCount++;
+
+      if (hasPlayedBefore()) {
+        alert("🔒 You've already played your turn for Halloween!");
+        return;
+      }
+
+      if (clickCount >= 3) {
+        gameSection.classList.remove('hidden');
+        clickCount = 0;
+        startMiniGame();
+      }
+    });
+
+    // Hide game section
+    closeBtn.addEventListener('click', () => {
+      gameSection.classList.add('hidden');
+    });
+
+    // Key Listeners
+    window.addEventListener('keydown', (e) => keys[e.key] = true);
+    window.addEventListener('keyup', (e) => keys[e.key] = false);
+
+    // Canvas Touch / Mouse movement
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      cauldron.x = e.clientX - rect.left - cauldron.width / 2;
+    });
+
+    function startMiniGame() {
+      if (hasPlayedBefore()) {
+        showLockScreen();
+        return;
+      }
+
+      isPlaying = true;
+      score = 0;
+      timeLeft = 30;
+      items = [];
+      scoreEl.textContent = score;
+      timerEl.textContent = timeLeft;
+
+      // Timer Interval
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          endGame();
+        }
+      }, 1000);
+
+      // Start loop
+      gameLoop();
+    }
+
+    function spawnItem() {
+      if (Math.random() < 0.04) {
+        const types = [
+          { symbol: '🍬', points: 10 },
+          { symbol: '🍭', points: 5 },
+          { symbol: '🍫', points: 15 },
+          { symbol: '🕷️', points: -10 }
+        ];
+        const selected = types[Math.floor(Math.random() * types.length)];
+        items.push({
+          x: Math.random() * (canvas.width - 30),
+          y: -30,
+          speed: 2 + Math.random() * 3,
+          ...selected
+        });
+      }
+    }
+
+    function gameLoop() {
+      if (!isPlaying) return;
+
+      // Clear
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Move Cauldron
+      if (keys['ArrowLeft'] || keys['a']) cauldron.x -= cauldron.speed;
+      if (keys['ArrowRight'] || keys['d']) cauldron.x += cauldron.speed;
+
+      // Keep cauldron in bounds
+      if (cauldron.x < 0) cauldron.x = 0;
+      if (cauldron.x + cauldron.width > canvas.width) cauldron.x = canvas.width - cauldron.width;
+
+      // Draw Cauldron
+      ctx.font = '30px Sans-Serif';
+      ctx.fillText('🧪', cauldron.x + 20, cauldron.y + 25);
+
+      // Spawn & Process Items
+      spawnItem();
+
+      for (let i = items.length - 1; i >= 0; i--) {
+        const item = items[i];
+        item.y += item.speed;
+
+        // Draw Item
+        ctx.font = '24px Sans-Serif';
+        ctx.fillText(item.symbol, item.x, item.y);
+
+        // Collision Check
+        if (
+          item.y >= cauldron.y - 10 &&
+          item.y <= cauldron.y + cauldron.height &&
+          item.x >= cauldron.x - 10 &&
+          item.x <= cauldron.x + cauldron.width
+        ) {
+          score += item.points;
+          if (score < 0) score = 0;
+          scoreEl.textContent = score;
+          items.splice(i, 1);
+          continue;
+        }
+
+        // Out of bounds
+        if (item.y > canvas.height + 30) {
+          items.splice(i, 1);
+        }
+      }
+
+      gameLoopId = requestAnimationFrame(gameLoop);
+    }
+
+    function endGame() {
+      isPlaying = false;
+      clearInterval(timerInterval);
+      cancelAnimationFrame(gameLoopId);
+
+      // Save lock state in localStorage
+      localStorage.setItem('halloweenGamePlayed', 'true');
+      localStorage.setItem('halloweenGameScore', score);
+
+      showLockScreen();
+    }
+
+    function showLockScreen() {
+      const savedScore = localStorage.getItem('halloweenGameScore') || score;
+      finalRecordedScore.textContent = `Final Score: ${savedScore} pts`;
+      lockScreen.classList.remove('hidden');
+    }
+  </script>
 </body>
 </html>
