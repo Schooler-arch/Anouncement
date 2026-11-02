@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YSD 14 | Student Page</title>
   <link rel="icon" href="https://www.classlink.com/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-page: #0b0f19;
-      --bg-card: #151c2c;
+      --bg-card: rgba(21, 28, 44, 0.92);
       --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
+      --text-muted: #cbd5e1;
       --border-color: #334155;
       --primary-blue: #2563eb;
       --primary-hover: #1d4ed8;
-      --fallback-bg: rgba(37, 99, 235, 0.12);
+      --fallback-bg: rgba(37, 99, 235, 0.2);
     }
 
     * {
@@ -37,7 +37,16 @@
       display: none !important;
     }
 
-    /* --- PORTAL STYLES --- */
+    /* --- PORTAL STYLES WITH SCHOOL BACKGROUND --- */
+    #portal-view {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), 
+                  url('east-fairview-school.jpg.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
     .container {
       flex: 1;
       display: flex;
@@ -54,26 +63,23 @@
     }
 
     .school-header-text h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 900;
       color: #ffffff;
       margin-bottom: 6px;
       letter-spacing: -0.5px;
-    }
-
-    .school-header-text p {
-      font-size: 1rem;
-      color: var(--text-muted);
+      text-shadow: 0 4px 12px rgba(0,0,0,0.8);
     }
 
     .card {
       background: var(--bg-card);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--border-color);
       border-radius: 12px;
       width: 100%;
       max-width: 440px;
       padding: 36px;
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       text-align: center;
     }
 
@@ -172,6 +178,7 @@
       font-size: 0.8rem;
       color: var(--text-muted);
       border-top: 1px solid var(--border-color);
+      background: rgba(11, 15, 25, 0.85);
     }
 
     /* --- HALLOWEEN PAGE STYLES --- */
