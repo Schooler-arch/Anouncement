@@ -41,9 +41,29 @@
     .container {
       flex: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 20px;
+    }
+
+    /* Text above the portal card */
+    .school-header-text {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .school-header-text h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .school-header-text p {
+      font-size: 1rem;
+      color: var(--text-muted);
     }
 
     .card {
@@ -293,6 +313,13 @@
   <!-- ================= PORTAL VIEW ================= -->
   <div id="portal-view">
     <main class="container">
+      
+      <!-- Text Above the Card -->
+      <div class="school-header-text">
+        <h1>East Fairview School</h1>
+        <p>Official Student & Staff Resource Portal</p>
+      </div>
+
       <div class="card">
         <h1 class="card-title">Student Launchpad</h1>
         <p class="card-sub">Access ClassLink, Google Classroom, and learning resources</p>
@@ -309,13 +336,11 @@
         <div class="support-area">
           <div class="support-label">Account Services & Notices</div>
           
-          <!-- Directly opens email to admin -->
-          <a href="mailto:admin@ysd14.org?subject=Password%20Reset%20Request" class="btn-secondary">
-            <span>Request Password Reset Link</span>
+          <a href="mailto:Lander.Monson@k12.nd.us?subject=Password%20Reset%20Request" class="btn-secondary">
+            <span>Request Password Reset</span>
             <span>›</span>
           </a>
 
-          <!-- Button to Launch Halloween Announcement Page -->
           <button class="btn-secondary" id="open-halloween-btn" style="border-color: #ff6600; color: #ff6600;">
             <span>🎃 View Halloween Announcement</span>
             <span>›</span>
@@ -325,7 +350,7 @@
     </main>
 
     <footer class="footer">
-      © YSD 14 School District • Technology & Information Systems
+      © Yellowstone School District 14 • Technology & Information Systems
     </footer>
   </div>
 
