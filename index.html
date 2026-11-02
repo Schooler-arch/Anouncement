@@ -43,7 +43,7 @@
       display: flex;
       flex-direction: column;
       background: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), 
-                  url('east-fairview-school.jpg.png') no-repeat center center fixed;
+                  url('east-fairview-school.jpg') no-repeat center center fixed;
       background-size: cover;
     }
 
@@ -115,6 +115,33 @@
       background-color: var(--primary-hover);
     }
 
+    /* Prominent Featured Link for Official Website */
+    .btn-featured-website {
+      width: 100%;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1.5px solid #f59e0b;
+      color: #ffffff;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+      transition: all 0.2s ease;
+      margin-bottom: 6px;
+    }
+
+    .btn-featured-website:hover {
+      border-color: #fbbf24;
+      background: linear-gradient(135deg, #334155, #1e293b);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25);
+    }
+
     .direct-link-box {
       margin-top: 16px;
       padding: 12px;
@@ -150,14 +177,15 @@
       letter-spacing: 0.5px;
     }
 
+    /* Secondary Compact Support Buttons */
     .btn-secondary {
       width: 100%;
       background: transparent;
       border: 1px solid var(--border-color);
       color: var(--text-main);
-      padding: 10px 14px;
+      padding: 9px 12px;
       border-radius: 6px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
       cursor: pointer;
       display: flex;
@@ -181,78 +209,88 @@
       background: rgba(11, 15, 25, 0.85);
     }
 
-    /* --- HALLOWEEN PAGE STYLES --- */
-    #halloween-page {
-      background-color: #1a1a1a;
-      color: #ff6600;
-      font-family: 'Arial Black', Gadget, sans-serif;
-      text-align: center;
-      padding: 30px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
+    /* --- WINDOWED ANNOUNCEMENT MODAL STYLES --- */
+    .announcement-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 20px;
     }
 
-    .halloween-container {
-      border: 5px solid #ff6600;
-      padding: 40px;
-      border-radius: 15px;
+    .announcement-modal {
+      border: 4px solid #ff6600;
+      border-radius: 14px;
       background-color: #0d0d0d;
-      display: inline-block;
-      min-width: 320px;
-      max-width: 700px;
+      color: #ff6600;
       width: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      max-width: 480px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.9);
+      text-align: center;
       position: relative;
     }
 
-    .halloween-container h1 {
-      font-size: 3rem;
-      text-shadow: 3px 3px #000, 0 0 20px #ff6600;
-      margin: 0 0 20px 0;
-    }
-
-    .halloween-container p {
-      color: #ffffff;
-      font-size: 1.4rem;
-      font-family: 'Arial', sans-serif;
+    .announcement-modal h2 {
+      font-family: 'Arial Black', Gadget, sans-serif;
+      font-size: 2rem;
+      text-shadow: 2px 2px #000, 0 0 15px #ff6600;
       margin-bottom: 12px;
     }
 
-    .signature {
+    .announcement-modal p {
+      color: #ffffff;
       font-size: 1.1rem;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .announcement-modal .signature {
+      font-size: 0.95rem;
       color: #ff8533;
       font-style: italic;
       font-family: 'Comic Sans MS', 'Arial', sans-serif;
-      margin-top: 15px;
-    }
-
-    .emoji { font-size: 4.5rem; user-select: none; }
-    .easter-egg-trigger { cursor: pointer; display: inline-block; transition: transform 0.15s ease; }
-    .easter-egg-trigger:active { transform: scale(1.2); }
-    .instruction { color: #888888; font-size: 0.9rem; font-family: sans-serif; margin-top: 25px; }
-
-    .back-to-portal-btn {
-      background: transparent;
-      border: 1px solid #ff6600;
-      color: #ff6600;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-family: sans-serif;
-      font-size: 0.85rem;
-      cursor: pointer;
+      margin-top: 10px;
       margin-bottom: 20px;
-      transition: all 0.2s;
     }
-    .back-to-portal-btn:hover { background: #ff6600; color: #000; }
 
+    .announcement-modal .emoji {
+      font-size: 3.5rem;
+      user-select: none;
+      margin-bottom: 10px;
+    }
+
+    .easter-egg-trigger {
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.15s ease;
+    }
+    .easter-egg-trigger:active { transform: scale(1.2); }
+
+    .btn-dismiss-announcement {
+      background: #ff6600;
+      color: #0d0d0d;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .btn-dismiss-announcement:hover { background: #ff8533; }
+
+    /* Hidden Game Section inside Modal */
     #game-section {
-      margin-top: 30px;
-      padding-top: 20px;
+      margin-top: 20px;
+      padding-top: 15px;
       border-top: 2px dashed #ff6600;
       display: flex;
       flex-direction: column;
@@ -267,16 +305,15 @@
       margin-bottom: 10px;
     }
 
-    .game-title { font-size: 1.3rem; color: #ffaa00; }
-    .close-btn { background: #c0392b; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .game-title { font-size: 1.1rem; color: #ffaa00; font-family: sans-serif; font-weight: bold; }
+    .close-btn { background: #c0392b; color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
     .game-canvas-container {
       position: relative;
       width: 100%;
-      max-width: 500px;
-      height: 350px;
-      border: 3px solid #ff6600;
-      border-radius: 10px;
+      height: 280px;
+      border: 2px solid #ff6600;
+      border-radius: 8px;
       overflow: hidden;
       background: #050505;
     }
@@ -285,33 +322,29 @@
 
     .lock-screen {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(10, 5, 12, 0.95);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       color: #ffffff;
-      padding: 20px;
-      box-sizing: border-box;
+      padding: 15px;
       z-index: 10;
     }
 
-    .lock-screen h2 { color: #e74c3c; margin-bottom: 10px; font-size: 1.8rem; }
-    .lock-screen p { font-size: 1.1rem; color: #ff8533; }
+    .lock-screen h2 { color: #e74c3c; margin-bottom: 6px; font-size: 1.4rem; text-shadow: none; }
+    .lock-screen p { font-size: 0.95rem; color: #ff8533; }
 
     .hud {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      max-width: 500px;
       font-family: 'Arial', sans-serif;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       color: #ffffff;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
   </style>
 </head>
@@ -340,15 +373,24 @@
         </div>
 
         <div class="support-area">
-          <div class="support-label">Account Services & Notices</div>
+          <div class="support-label">District Information</div>
           
+          <!-- Prominent Primary School Website Link -->
+          <a href="https://www.eastfairview.k12.nd.us/" target="_blank" rel="noopener noreferrer" class="btn-featured-website">
+            <span>🌐 Official School Website</span>
+            <span style="color: #fbbf24;">→</span>
+          </a>
+
+          <div class="support-label" style="margin-top: 8px;">Account Services & Notices</div>
+
+          <!-- Secondary Compact Support Links -->
           <a href="mailto:Lander.Monson@k12.nd.us?subject=Password%20Reset%20Request" class="btn-secondary">
             <span>Request Password Reset</span>
             <span>›</span>
           </a>
 
-          <button class="btn-secondary" id="open-halloween-btn" style="border-color: #ff6600; color: #ff6600;">
-            <span>🎃 View Halloween Announcement</span>
+          <button class="btn-secondary" id="open-announcement-btn" style="border-color: #ff6600; color: #ff6600;">
+            <span>🎃 View Announcement</span>
             <span>›</span>
           </button>
         </div>
@@ -360,20 +402,20 @@
     </footer>
   </div>
 
-  <!-- ================= HALLOWEEN PAGE VIEW ================= -->
-  <div id="halloween-page" class="hidden">
-    <button class="back-to-portal-btn" id="back-to-portal">← Back to YSD 14 Portal</button>
-
-    <div class="halloween-container">
+  <!-- ================= WINDOWED ANNOUNCEMENT POPUP ================= -->
+  <div id="announcement-modal" class="announcement-backdrop hidden">
+    <div class="announcement-modal">
       <div class="emoji">
-        <span id="pumpkin-trigger" class="easter-egg-trigger" title="Click to Play!">🎃</span> 👻 🦇
+        <span id="pumpkin-trigger" class="easter-egg-trigger" title="???">🎃</span> 👻 🦇
       </div>
-      <h1>HAPPY HALLOWEEN!</h1>
+      <h2>HAPPY HALLOWEEN!</h2>
       <p>Have a spooktacular day at school today!</p>
       <p>Stay safe trick-or-treating! 🍬</p>
       <p class="signature">- Sent from You-Know-Who 🧙‍♂️✨</p>
 
-      <!-- Hidden Game Area -->
+      <button class="btn-dismiss-announcement" id="dismiss-announcement-btn">Got It / Close</button>
+
+      <!-- Hidden Secret Game -->
       <div id="game-section" class="hidden">
         <div class="game-header">
           <span class="game-title">🎃 Secret Candy Catcher!</span>
@@ -389,43 +431,45 @@
           <div id="lock-screen" class="lock-screen hidden">
             <h2>🔒 Game Locked</h2>
             <p>You've already played your turn for Halloween!</p>
-            <p id="final-recorded-score" style="margin-top: 15px; color: #fff;"></p>
+            <p id="final-recorded-score" style="margin-top: 10px; color: #fff;"></p>
           </div>
 
-          <canvas id="gameCanvas" width="500" height="350"></canvas>
+          <canvas id="gameCanvas" width="420" height="280"></canvas>
         </div>
       </div>
-
-      <div class="instruction">(Click the 🎃 pumpkin to start the game!)</div>
     </div>
   </div>
 
   <script>
-    // --- PORTAL NAVIGATION LOGIC ---
-    const portalView = document.getElementById('portal-view');
-    const halloweenPage = document.getElementById('halloween-page');
-    const openHalloweenBtn = document.getElementById('open-halloween-btn');
-    const backToPortalBtn = document.getElementById('back-to-portal');
+    // --- ANNOUNCEMENT POPUP & PERSISTENCE CONTROL ---
+    const ANNOUNCEMENT_KEY = "announcement_halloween_2026_seen";
 
-    openHalloweenBtn.addEventListener('click', () => {
-      portalView.classList.add('hidden');
-      halloweenPage.classList.remove('hidden');
+    const announcementModal = document.getElementById('announcement-modal');
+    const dismissBtn = document.getElementById('dismiss-announcement-btn');
+    const openAnnouncementBtn = document.getElementById('open-announcement-btn');
+
+    if (!localStorage.getItem(ANNOUNCEMENT_KEY)) {
+      announcementModal.classList.remove('hidden');
+    }
+
+    dismissBtn.addEventListener('click', () => {
+      localStorage.setItem(ANNOUNCEMENT_KEY, 'true');
+      announcementModal.classList.add('hidden');
     });
 
-    backToPortalBtn.addEventListener('click', () => {
-      halloweenPage.classList.add('hidden');
-      portalView.classList.remove('hidden');
+    openAnnouncementBtn.addEventListener('click', () => {
+      announcementModal.classList.remove('hidden');
     });
 
-    const launchBtn = document.getElementById('launch-classlink-btn');
-    launchBtn.addEventListener('click', () => {
+    // ClassLink Navigation
+    document.getElementById('launch-classlink-btn').addEventListener('click', () => {
       window.open("https://login.classlink.com/my/ysd14", '_top');
     });
 
-    // --- HALLOWEEN GAME LOGIC ---
+    // --- SECRET HALLOWEEN GAME LOGIC ---
     const pumpkinTrigger = document.getElementById('pumpkin-trigger');
     const gameSection = document.getElementById('game-section');
-    const closeBtn = document.getElementById('close-game');
+    const closeGameBtn = document.getElementById('close-game');
     const lockScreen = document.getElementById('lock-screen');
     const finalRecordedScore = document.getElementById('final-recorded-score');
 
@@ -440,7 +484,7 @@
     let timerInterval = null;
     let isPlaying = false;
 
-    const cauldron = { x: 210, y: 300, width: 80, height: 30, speed: 7 };
+    const cauldron = { x: 170, y: 240, width: 70, height: 25, speed: 7 };
     let items = [];
     const keys = {};
 
@@ -450,7 +494,6 @@
 
     pumpkinTrigger.addEventListener('click', () => {
       gameSection.classList.remove('hidden');
-
       if (hasPlayedBefore()) {
         showLockScreen();
       } else if (!isPlaying) {
@@ -458,7 +501,7 @@
       }
     });
 
-    closeBtn.addEventListener('click', () => {
+    closeGameBtn.addEventListener('click', () => {
       gameSection.classList.add('hidden');
       if (isPlaying) {
         isPlaying = false;
@@ -507,8 +550,8 @@
         ];
         const selected = types[Math.floor(Math.random() * types.length)];
         items.push({
-          x: Math.random() * (canvas.width - 30),
-          y: -30,
+          x: Math.random() * (canvas.width - 25),
+          y: -25,
           speed: 2 + Math.random() * 3,
           ...selected
         });
@@ -526,8 +569,8 @@
       if (cauldron.x < 0) cauldron.x = 0;
       if (cauldron.x + cauldron.width > canvas.width) cauldron.x = canvas.width - cauldron.width;
 
-      ctx.font = '30px Sans-Serif';
-      ctx.fillText('🧪', cauldron.x + 20, cauldron.y + 25);
+      ctx.font = '26px Sans-Serif';
+      ctx.fillText('🧪', cauldron.x + 15, cauldron.y + 20);
 
       spawnItem();
 
@@ -535,7 +578,7 @@
         const item = items[i];
         item.y += item.speed;
 
-        ctx.font = '24px Sans-Serif';
+        ctx.font = '20px Sans-Serif';
         ctx.fillText(item.symbol, item.x, item.y);
 
         if (
@@ -551,7 +594,7 @@
           continue;
         }
 
-        if (item.y > canvas.height + 30) {
+        if (item.y > canvas.height + 25) {
           items.splice(i, 1);
         }
       }
