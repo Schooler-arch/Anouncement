@@ -43,7 +43,7 @@
       display: flex;
       flex-direction: column;
       background: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), 
-                  url('east-fairview-school.jpg') no-repeat center center fixed;
+                  url('east-fairview-school.jpg.png') no-repeat center center fixed;
       background-size: cover;
     }
 
@@ -115,33 +115,6 @@
       background-color: var(--primary-hover);
     }
 
-    /* Prominent Featured Link for Official Website */
-    .btn-featured-website {
-      width: 100%;
-      background: linear-gradient(135deg, #1e293b, #0f172a);
-      border: 1.5px solid #f59e0b;
-      color: #ffffff;
-      padding: 14px 18px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
-      transition: all 0.2s ease;
-      margin-bottom: 6px;
-    }
-
-    .btn-featured-website:hover {
-      border-color: #fbbf24;
-      background: linear-gradient(135deg, #334155, #1e293b);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25);
-    }
-
     .direct-link-box {
       margin-top: 16px;
       padding: 12px;
@@ -177,15 +150,15 @@
       letter-spacing: 0.5px;
     }
 
-    /* Secondary Compact Support Buttons */
+    /* Standard Clean Secondary Link Buttons */
     .btn-secondary {
       width: 100%;
       background: transparent;
       border: 1px solid var(--border-color);
       color: var(--text-main);
-      padding: 9px 12px;
+      padding: 10px 14px;
       border-radius: 6px;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: 500;
       cursor: pointer;
       display: flex;
@@ -373,22 +346,21 @@
         </div>
 
         <div class="support-area">
-          <div class="support-label">District Information</div>
+          <div class="support-label">Account Services & Links</div>
           
-          <!-- Prominent Primary School Website Link -->
-          <a href="https://www.eastfairview.k12.nd.us/" target="_blank" rel="noopener noreferrer" class="btn-featured-website">
-            <span>🌐 Official School Website</span>
-            <span style="color: #fbbf24;">→</span>
+          <!-- Clean Official School Website Link -->
+          <a href="https://www.eastfairview.k12.nd.us/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <span>🏫 Official School Website</span>
+            <span>›</span>
           </a>
 
-          <div class="support-label" style="margin-top: 8px;">Account Services & Notices</div>
-
-          <!-- Secondary Compact Support Links -->
+          <!-- Password Reset Link -->
           <a href="mailto:Lander.Monson@k12.nd.us?subject=Password%20Reset%20Request" class="btn-secondary">
             <span>Request Password Reset</span>
             <span>›</span>
           </a>
 
+          <!-- Manual Announcement Trigger -->
           <button class="btn-secondary" id="open-announcement-btn" style="border-color: #ff6600; color: #ff6600;">
             <span>🎃 View Announcement</span>
             <span>›</span>
